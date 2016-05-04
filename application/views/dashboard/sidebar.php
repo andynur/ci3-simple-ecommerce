@@ -9,7 +9,7 @@
             <li class="treeview">
               <a href="#/">
                 <i class="fa fa-shopping-bag"></i>
-                <span>Products</span>
+                <span>Produk</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul style="display: none;" class="treeview-menu">
@@ -22,7 +22,7 @@
               </ul>
             </li>   
             <li>
-              <?= anchor('dashboard/invoices', '<i class="fa fa-list"></i> <span>Invoices</span>') ?>
+              <?= anchor('dashboard/invoices', '<i class="fa fa-list"></i> <span>Faktur</span>') ?>
             </li>           
             <li>
               <?= anchor('/', '<i class="fa fa-circle-o text-aqua"></i> <span>Back to Home</span>') ?>

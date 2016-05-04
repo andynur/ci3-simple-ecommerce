@@ -14,7 +14,8 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Invoice ID</th>
+					<th>Faktur ID</th>
+					<th>User</th>
 					<th>Tanggal Pesan</th>
 					<th>Tanggal Tempo</th>
 					<th>Status</th>
@@ -32,11 +33,15 @@
 				<tr>
 					<td><?= $no; ?></td>
 					<td><?= $invoice->id; ?></td>
+					<td><?= $invoice->fullname; ?></td>
 					<td><?= $invoice->date; ?></td>
 					<td><?= $invoice->due_date; ?></td>
 					<td><?= $invoice->status; ?></td>
 					<td>
 						<?= anchor($link . '/detail/' . $invoice->id, '<i class="fa fa-eye" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm']); ?>
+						<?php if ($invoice->status == 'confirmed'): ?>
+						<?= anchor($link . '/approve/' . $invoice->id, '<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success btn-sm']); ?>
+						<?php endif ?>
 						<?= anchor($link . '/delete/' . $invoice->id, '<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'id' => 'boxalert']); ?>
 					</td>
 				</tr>

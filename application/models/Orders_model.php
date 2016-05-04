@@ -39,6 +39,20 @@ class Orders_model extends CI_Model
     	return TRUE;
     }
 
+    public function getAllInvoices()
+    {
+        $hasil = $this->db->select('i.id, i.date, i.due_date, u.fullname, i.status')
+                          ->from('invoices i, users u')
+                          ->where('i.user_id = u.id')
+                          ->get();
+
+        if ($hasil->num_rows() > 0) {
+            return $hasil->result();            
+        } else {
+            return false;
+        }
+    }
+
     public function getInvoiceById($invoice_id)
     {
         $hasil = $this->db->where('id', $invoice_id)
@@ -76,6 +90,12 @@ class Orders_model extends CI_Model
         } else {
             return 0;
         }
+    }
+
+    public function approveOrder($invoice_id)
+    {
+        $this->db->where('id', $invoice_id);
+        $this->db->update('invoices', array('status' => 'paid')); 
     }
 
 }

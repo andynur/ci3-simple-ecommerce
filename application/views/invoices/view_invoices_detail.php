@@ -6,7 +6,7 @@
 				<h3 class="box-title" style="margin-top: 10px;"><?= $judul; ?></h3>
 			</div>
 			<div style="float: right;">	      
-	    		<?= anchor($link . '/add', '<span class="glyphicon glyphicon-plus" area-hidden="true"></span>&nbsp; Tambah', ['class' => 'btn btn-sm btn-success']) ?> 	
+	    		<?= anchor($link, '<span class="glyphicon glyphicon-chevron-left" area-hidden="true"></span>&nbsp; Kembali', ['class' => 'btn btn-sm btn-primary']) ?> 	
 	    	</div>
 	    </div><!-- /.box-header -->
 	    <div class="box-body table-responsive no-padding">
