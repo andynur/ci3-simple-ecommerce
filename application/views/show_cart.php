@@ -46,8 +46,8 @@
                         </div>
                     </td>
                     <td>                        
-                        <input type="text" name="qty_<?=$i?>" value="<?= $items['qty']; ?>" style="width: 50px; text-align: center ">
-                        <input type="hidden" name="rowid_<?=$i?>" value="<?= $items['rowid']; ?>">
+                        <input type="text" name="qty[]" value="<?= $items['qty']; ?>" style="width: 50px; text-align: center ">
+                        <input type="hidden" name="rowid[]" value="<?= $items['rowid']; ?>">
                     </td>
                     <td>Rp. <?= number_format($items['price'], 0, ',', '.'); ?></td>
                     <td>Rp. <?= number_format($items['subtotal'], 0, ',', '.'); ?></td>
@@ -73,7 +73,7 @@
             <?= anchor('home/clear_cart', '<i class="fa fa-trash" aria-hidden="true"></i>&nbsp; Bersihkan keranjang', ['class' => 'btn btn-danger top-btn']) ?>
             <?= anchor('menu', '<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp; Lanjut belanja', ['class' => 'btn btn-primary top-btn']) ?>
             <button type="submit" class="btn btn-info top-btn"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; Ubah Jumlah</button>
-            <?= anchor('order/success', '<i class="fa fa-usd" aria-hidden="true"></i>&nbsp; Belanja selesai', ['class' => 'btn btn-success top-btn']) ?>                        
+            <?= anchor('order', '<i class="fa fa-usd" aria-hidden="true"></i>&nbsp; Belanja selesai', ['class' => 'btn btn-success top-btn']) ?>                        
         </div>        
         </form>
         <?php } ?>

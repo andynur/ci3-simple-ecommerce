@@ -60,17 +60,20 @@ class Home extends CI_Controller
 		$this->load->view('layout/template', $data);	
 	}
 
-	public function update_cart($id)
+	public function update_cart()
 	{
-		$data = array(
-	        array(
-           		'rowid' => $this->input->post('rowid[]'),
-		        'qty'   => $this->input->post('qty[]')
-	        ),
-		);
-			
-		$this->cart->update($data);
+		foreach ($this->input->post('rowid') as $key => $value) {
+			$rowid = $this->input->post('rowid')[$key];
+			$qty = $this->input->post('qty')[$key];
 
+			$data = array(
+           		'rowid' => $rowid,
+		        'qty'   => $qty		        
+			);
+			
+			$this->cart->update($data);			
+		}
+	
 		$this->session->set_flashdata('pesan', array('message' => 'Jumlah pesanan berhasil diubah.', 'class' => 'success', 'title' => 'Berhasil'));  
 
 		redirect('home/cart');

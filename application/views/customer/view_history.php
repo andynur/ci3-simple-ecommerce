@@ -38,7 +38,7 @@
 					?>
 				</td>	
 					<td>
-						<?= anchor('customer/detail/' . $row->id, '<i class="fa fa-eye" aria-hidden="true"></i> Lihat', ['class' => 'btn btn-primary']); ?>
+						<?= anchor('customer/detail/' . $row->id, '<i class="fa fa-eye" aria-hidden="true"></i> Lihat', ['class' => 'btn btn-primary top-btn']); ?>
 						<?php 
 							if ($row->status == 'unpaid') {								
 								echo anchor('customer/payment_confirmation/' . $row->id, '<i class="fa fa-usd" aria-hidden="true"></i> Konfirmasi ', ['class' => 'btn btn-info top-btn']); 
