@@ -9,7 +9,7 @@ class Order extends CI_Controller
 		parent::__construct();
 
 		if (!$this->session->userdata('username')) {
-			redirect('login');
+			redirect('auth/login');
 		}
 		
 		$this->load->model('orders_model');

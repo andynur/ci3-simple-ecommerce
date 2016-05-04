@@ -26,4 +26,20 @@ class Users_model extends CI_Model
     	}
     }
 
+    public function register()
+    {
+        $data = array(
+            'username'      => $this->input->post('username'),
+            'fullname'      => $this->input->post('fullname'),
+            'email'         => $this->input->post('email'),
+            'password'      => $this->input->post('password'),
+            'address'       => $this->input->post('address'),
+            'phone'         => $this->input->post('phone'),
+            'zip'           => $this->input->post('zip'),
+            'group_id'      => 2,
+        );
+
+        $this->db->insert('users', $data); 
+    }
+
 }

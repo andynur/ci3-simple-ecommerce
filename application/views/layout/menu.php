@@ -9,10 +9,10 @@
 					<li><a href="<?= base_url(); ?>dashboard"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&nbsp; Go to Dashboard</a></li>
 					<?php } ?>
 					<?php if ($this->session->userdata('username')) { ?>
-					<li><?= anchor('logout', '<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Keluar'); ?></li>
+					<li><?= anchor('auth/logout', '<i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Keluar'); ?></li>
 			        <?php } else { ?>
-    				<li><?= anchor('login', '<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Masuk'); ?></li>
-    				<li><?= anchor('registration', '<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp; Daftar'); ?></li>
+    				<li><?= anchor('auth/login', '<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Masuk'); ?></li>
+    				<li><?= anchor('auth/register', '<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp; Daftar'); ?></li>
       				<?php } ?>
 				</ul>
 			</div>

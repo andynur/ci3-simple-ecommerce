@@ -63,9 +63,11 @@ class Home extends CI_Controller
 	public function update_cart($id)
 	{
 		$data = array(
-		        'rowid' => $this->input->post('rowid'),
-		        'qty'   => $this->input->post('qty')
-		);	
+	        array(
+           		'rowid' => $this->input->post('rowid[]'),
+		        'qty'   => $this->input->post('qty[]')
+	        ),
+		);
 			
 		$this->cart->update($data);
 

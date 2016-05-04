@@ -9,7 +9,7 @@ class Products extends CI_Controller
 
         if ($this->session->userdata('group') != '1') {
             $this->session->set_flashdata('pesan', array('message' => 'Maaf, Anda belum login!', 'class' => 'error', 'title' => 'Warning'));
-            redirect('login');
+            redirect('auth/login');
         }
 
         $this->load->model('products_model');

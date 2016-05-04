@@ -4,7 +4,7 @@
       <h4 class="title">Pelanggan Baru</h4>
       <p>Untuk Anda yang belum menjadi pelanggan Pizza Hot Delivery, silahkan mendaftar dengan cara mengklik tombol dibawah ini.</p>
       <div class="button1">
-         <?= anchor('register', '<input type="submit" name="Submit" value="Buat Akun">')?>
+         <?= anchor('auth/register', '<input type="submit" name="Submit" value="Buat Akun">')?>
        </div>
        <div class="clear"></div>
     </div>

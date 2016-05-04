@@ -10,7 +10,7 @@
             </div>
      <?php 
      } else {
-        // echo "<pre>" . print_r($this->cart->contents(), 1) . "</pre>";
+        echo "<pre>" . print_r($this->cart->contents(), 1) . "</pre>";
      ?>
      <form action="<?= base_url('home/update_cart'); ?>" method="post">
      <table class="responstable">
@@ -46,8 +46,8 @@
                         </div>
                     </td>
                     <td>                        
-                        <input type="text" name="qty" value="<?= $items['qty']; ?>" style="width: 50px; text-align: center ">
-                        <input type="hidden" name="rowid" value="<?= $items['rowid']; ?>">
+                        <input type="text" name="qty_<?=$i?>" value="<?= $items['qty']; ?>" style="width: 50px; text-align: center ">
+                        <input type="hidden" name="rowid_<?=$i?>" value="<?= $items['rowid']; ?>">
                     </td>
                     <td>Rp. <?= number_format($items['price'], 0, ',', '.'); ?></td>
                     <td>Rp. <?= number_format($items['subtotal'], 0, ',', '.'); ?></td>
