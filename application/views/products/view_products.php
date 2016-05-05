@@ -31,18 +31,18 @@
 				foreach ($query as $product) : 
 				?>
 				<tr>
-					<td><?= $no; ?></td>
-					<td><?= $product->name; ?></td>
-					<td><?php
+					<td style="vertical-align: middle;"><?= $no; ?></td>
+					<td style="vertical-align: middle;"><?= $product->name; ?></td>
+					<td style="vertical-align: middle;"><?php
 						$product_image = ['src' => 'uploads/' . $product->image, 'width' => '100']; 
 						echo img($product_image); ?>
 					</td>
-					<td><?= $product->description; ?></td>
-					<td><?= $product->price; ?></td>
-					<td><?= $product->stock; ?></td>
-					<td>
-						<?= anchor($link . '/edit/' . $product->id, '<i class="fa fa-edit" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm']); ?>
-						<?= anchor($link . '/delete/' . $product->id, '<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'id' => 'boxalert']); ?>
+					<td style="vertical-align: middle;"><?= $product->description; ?></td>
+					<td style="vertical-align: middle;">Rp. <?= number_format($product->price, 0, ',', '.'); ?></td>
+					<td style="vertical-align: middle;"><?= $product->stock; ?></td>
+					<td style="vertical-align: middle;">
+						<?= anchor($link . '/edit/' . $product->id, '<i class="fa fa-edit" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm', 'style' => 'margin-top: 5px;']); ?>
+						<?= anchor($link . '/delete/' . $product->id, '<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm top-btn', 'style' => 'margin-top: 5px;', 'id' => 'boxalert']); ?>
 					</td>
 				</tr>
 				<?php 

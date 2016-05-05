@@ -94,8 +94,24 @@ class Orders_model extends CI_Model
 
     public function approveOrder($invoice_id)
     {
+        // ubah status
         $this->db->where('id', $invoice_id);
         $this->db->update('invoices', array('status' => 'paid')); 
+
+        // check konfirmasi
+        $check = $this->db->select('confirmation_id')
+                          ->where('id', $invoice_id)
+                          ->limit(1)
+                          ->get('invoices');
+
+        if ($check->num_rows() > 0) {
+            // konfirmasi diterima
+            $this->db->where('id', $check->row()->confirmation_id);
+            $this->db->update('confirmations', array('check' => 1)); 
+        } else {
+            return 0;
+        }
+        
     }
 
 }

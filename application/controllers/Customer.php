@@ -7,25 +7,35 @@ class Customer extends CI_Controller
 	public function __construct() 
 	{
 		parent::__construct();
+
+        if (!$this->session->userdata('username')) {
+            redirect('auth/login');
+        }
+
 		$this->load->model('customer_model');
         $this->load->model('orders_model');
 	}
 
-	public function payment_confirmation($invoice_id = 0)
+	public function payment_confirmation($invoice_id)
 	{
-        $user = $this->session->userdata('username');
+        if ($this->uri->segment(3) == '' || $this->uri->segment(3) == 0) {
+            redirect('customer/shopping_history');
+        }
         
         $data = array(
             'main_view'     => 'customer/form_confirmation',
             'page_title'    => 'Konfirmasi Pembayaran | Pizza Hot Delivery',
             'history'       =>  $this->db->select('SUM(qty * price) AS total')
-                              ->from('orders')
-                              ->where('invoice_id', $invoice_id)
-                              ->get()
+                                         ->from('orders')
+                                         ->where('invoice_id', $invoice_id)
+                                         ->get()
         );
 
-        $this->form_validation->set_rules('invoice_id', 'Invoice ID', 'trim|required|numeric|integer');         
-        $this->form_validation->set_rules('amount', 'Amount Transfered', 'trim|required|numeric|integer');         
+        $this->form_validation->set_rules('invoice_id', 'Invoice ID', 'trim|numeric|integer');
+        $this->form_validation->set_rules('bank_name', 'Nama Bank', 'trim|required');
+        $this->form_validation->set_rules('account_name', 'Nama Akun', 'trim|required');
+        $this->form_validation->set_rules('bank_destination', 'Bank Tujuan', 'callback_bank_selected');
+        $this->form_validation->set_rules('amount', 'Nominal Transfer', 'trim|required|numeric');         
 
         if ($this->form_validation->run() == FALSE) {
         	if ($this->input->post('invoice_id')) {
@@ -36,14 +46,16 @@ class Customer extends CI_Controller
             
             $this->load->view('layout/template', $data);	
         } else {
-         	$isValid = $this->customer_model->mark_invoice_confirmed(set_value('invoice_id'), set_value('amount'));
+         	$isValid = $this->customer_model->mark_invoice_confirmed($invoice_id);
 
          	if ($isValid) {
-         		 $this->session->set_flashdata('pesan', array('message' => 'Kami akan mengecek pembayaran Anda dalam 1x24 jam.', 'class' => 'success', 'title' => 'Berhasil'));    	
+         		$this->session->set_flashdata('pesan', array('message' => 'Kami akan mengecek pembayaran Anda dalam 1x24 jam.', 'class' => 'success', 'title' => 'Berhasil'));    	
+
          		redirect('customer/shopping_history');
          	} else {
                 $this->session->set_flashdata('pesan', array('message' => 'Nominal Transfer kurang dari Total Pesanan.', 'class' => 'error', 'title' => 'Peringatan!'));   	
-         		redirect('customer/payment_confirmation/' . set_value('invoice_id'));
+
+         		redirect('customer/payment_confirmation/' . $invoice_id);
          	}         	         	         	
         }
 	}
@@ -79,9 +91,9 @@ class Customer extends CI_Controller
         $isValid = $this->customer_model->mark_invoice_canceled($invoice_id);
 
         if ($isValid) {
-           $this->session->set_flashdata('pesan', array('message' => 'Status faktur berhasil diubah.', 'class' => 'success', 'title' => 'Info'));     
+           $this->session->set_flashdata('pesan', array('message' => 'Faktur #' . $invoice_id . ' berhasil dibatalkan!.', 'class' => 'success', 'title' => 'Berhasil'));     
         } else {
-            $this->session->set_flashdata('pesan', array('message' => 'Status faktur gagal diubah!.', 'class' => 'error', 'title' => 'Error!'));    
+            $this->session->set_flashdata('pesan', array('message' => 'Faktur #' . $invoice_id . ' gagal dibatalkan!.', 'class' => 'error', 'title' => 'Error!'));    
         }  
 
         redirect('customer/shopping_history');       
@@ -98,6 +110,17 @@ class Customer extends CI_Controller
         }
 
         redirect('customer/shopping_history');         
+    }
+
+    public function bank_selected()
+    {
+        $this->form_validation->set_message('bank_selected', 'Pilih Bank tujuan.');
+
+        if (empty($this->input->post('bank_destination'))) {
+            return false;
+        } else{
+            return true;
+        }
     }
 
 }

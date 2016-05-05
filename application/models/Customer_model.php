@@ -21,12 +21,14 @@ class Customer_model extends CI_Model
         }
 	}
 
-    public function mark_invoice_confirmed($invoice_id, $amount)
+    public function mark_invoice_confirmed($invoice_id)
     {        
         // check invoice
         $invoice = $this->db->where('id', $invoice_id)->limit(1)->get('invoices');
+        $amount  = $this->input->post('amount');
+
         if ($invoice->num_rows() == 0) {
-            $ret = false;
+            $ret = FALSE;
         } else {
             // check the amoount
             $hasil = $this->db->select('SUM(qty * price) AS total')
@@ -35,11 +37,27 @@ class Customer_model extends CI_Model
                               ->get();
 
             if ((int)$hasil->row()->total > (int)$amount) { 
-                $ret = false;
+                $ret = FALSE;
             } else {
-                $this->db->where('id', $invoice_id)->update('invoices', array('status' => 'confirmed'));
-                
-                $ret = true;
+                // konfirmasi data
+                $data = array(
+                    'bank_name'         => $this->input->post('bank_name'),
+                    'account_name'      => $this->input->post('account_name'),
+                    'bank_destination'  => $this->input->post('bank_destination'),
+                    'amount'            => $amount,
+                    'date'              => date('Y-m-d H:i:s'),
+                    'check'             => 0
+                );
+
+                $this->db->insert('confirmations', $data);
+
+                // ubah status
+                $confirmation_id = $this->db->insert_id(); // mengambil id terakhir
+
+                $this->db->where('id', $invoice_id)->update('invoices',
+                                 array('status' => 'confirmed', 'confirmation_id' => $confirmation_id));
+
+                $ret = TRUE;
             }
         }
 

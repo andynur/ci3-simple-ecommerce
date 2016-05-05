@@ -19,7 +19,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url()."assets/adminlte/"; ?>dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?= $this->session->userdata('username'); ?></span>
+                  <span class="hidden-xs"><?= $this->session->userdata('fullname'); ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -38,7 +38,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                        <a href="<?php echo base_url()."logout"; ?>" class="btn btn-default btn-flat">Sign out</a>
+                        <a href="<?php echo base_url()."auth/logout"; ?>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>

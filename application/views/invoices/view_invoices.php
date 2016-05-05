@@ -40,7 +40,7 @@
 					<td>
 						<?= anchor($link . '/detail/' . $invoice->id, '<i class="fa fa-eye" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm']); ?>
 						<?php if ($invoice->status == 'confirmed'): ?>
-						<?= anchor($link . '/approve/' . $invoice->id, '<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success btn-sm']); ?>
+						<?= anchor($link . '/approve/' . $invoice->id, '<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success btn-sm', 'title' => 'Ubah status pembayaran']); ?>
 						<?php endif ?>
 						<?= anchor($link . '/delete/' . $invoice->id, '<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'id' => 'boxalert']); ?>
 					</td>

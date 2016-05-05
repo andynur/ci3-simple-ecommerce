@@ -2122,7 +2122,7 @@ ul.delivery-list li a:hover{
 	padding:10px 30px;
 	color: #FFF;
 	cursor: pointer;
-	background:#FF3D3D;
+	background:#555;
 	border:none;
 	outline:none;
 	font-family: 'Exo 2', sans-serif;
@@ -2130,7 +2130,7 @@ ul.delivery-list li a:hover{
 	margin-top: 20px;
 }
 .submit input[type="submit"]:hover{
-	background:#555;
+	background:#FF3D3D;
 }
 .map{
 	margin-top:4%;

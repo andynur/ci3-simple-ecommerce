@@ -10,7 +10,7 @@
             </div>
      <?php 
      } else {
-        echo "<pre>" . print_r($this->cart->contents(), 1) . "</pre>";
+        // echo "<pre>" . print_r($this->cart->contents(), 1) . "</pre>";
      ?>
      <form action="<?= base_url('home/update_cart'); ?>" method="post">
      <table class="responstable">

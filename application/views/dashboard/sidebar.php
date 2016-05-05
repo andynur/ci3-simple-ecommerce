@@ -5,7 +5,7 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header text-center">MAIN NAVIGATION</li>
+            <li class="header text-center">NAVIGASI UTAMA</li>
             <li class="treeview">
               <a href="#/">
                 <i class="fa fa-shopping-bag"></i>
@@ -23,9 +23,12 @@
             </li>   
             <li>
               <?= anchor('dashboard/invoices', '<i class="fa fa-list"></i> <span>Faktur</span>') ?>
-            </li>           
+            </li> 
             <li>
-              <?= anchor('/', '<i class="fa fa-circle-o text-aqua"></i> <span>Back to Home</span>') ?>
+              <?= anchor('dashboard/confirmations', '<i class="fa fa-usd"></i> <span>Pembayaran</span>') ?>
+            </li>                       
+            <li>
+              <?= anchor('/', '<i class="fa fa-circle-o text-aqua"></i> <span>Kembali ke Beranda</span>') ?>
             </li>                
                 <!-- <li class="treeview">
                   <a href="#/">
